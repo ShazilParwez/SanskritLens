@@ -7,11 +7,21 @@ and Zipf-like rank-frequency analysis.
 
 from __future__ import annotations
 import math
+from pathlib import Path
 from typing import Any
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+# Register bundled Noto Sans Devanagari font with Matplotlib if available
+_bundled_font_path = Path(__file__).resolve().parent.parent.parent / "data" / "fonts" / "NotoSansDevanagari-Regular.ttf"
+if _bundled_font_path.is_file():
+    try:
+        fm.fontManager.addfont(str(_bundled_font_path))
+    except Exception:
+        pass
 
 # Scholarly Palette Definition
 COLOR_PRIMARY = "#B45309"      # Warm antique saffron

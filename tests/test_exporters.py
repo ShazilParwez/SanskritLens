@@ -51,10 +51,9 @@ def test_txt_summary_export(sample_analysis):
 
 
 def test_pdf_report_export(sample_analysis):
-    """Verify PDF export produces non-empty bytes starting with PDF header."""
+    """Verify PDF export produces non-empty bytes with valid PDF binary header."""
     pdf_bytes = export_to_pdf_report(sample_analysis, title="Test PDF Report")
     assert isinstance(pdf_bytes, bytes)
-    assert len(pdf_bytes) > 100
-    # Either PDF header %PDF or plain text fallback
-    assert pdf_bytes.startswith(b"%PDF") or b"TEST PDF REPORT" in pdf_bytes
+    assert len(pdf_bytes) > 1000
+    assert pdf_bytes.startswith(b"%PDF")
 

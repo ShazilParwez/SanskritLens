@@ -103,11 +103,69 @@ def export_to_txt_summary(analysis_result: Any, title: str = "SanskritLens Analy
     return "\n".join(lines)
 
 
+def _register_devanagari_pdf_font() -> str:
+    """Resolve and register a Devanagari TrueType font with ReportLab.
+
+    Priority order:
+    1. Bundled portable font: data/fonts/NotoSansDevanagari-Regular.ttf
+    2. Linux system fonts: /usr/share/fonts/truetype/noto/... or fonts-deva
+    3. Windows system fonts: C:/Windows/Fonts/Nirmala.ttc or mangal.ttf
+    4. Fallback: Helvetica
+    """
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+
+    # 1. Bundled repository font (portable across all environments)
+    base_dir = Path(__file__).resolve().parent.parent.parent
+    bundled = base_dir / "data" / "fonts" / "NotoSansDevanagari-Regular.ttf"
+    if bundled.is_file():
+        try:
+            pdfmetrics.registerFont(TTFont("NotoSansDevanagari", str(bundled)))
+            return "NotoSansDevanagari"
+        except Exception:
+            pass
+
+    # 2. Linux system paths (Debian / Ubuntu / Streamlit Community Cloud)
+    linux_paths = [
+        Path("/usr/share/fonts/truetype/noto/NotoSansDevanagari-Regular.ttf"),
+        Path("/usr/share/fonts/truetype/noto/NotoSansDevanagari-Bold.ttf"),
+        Path("/usr/share/fonts/truetype/fonts-deva-extra/gargi.ttf"),
+        Path("/usr/share/fonts/truetype/nakula/nakula.ttf"),
+        Path("/usr/share/fonts/truetype/freefont/FreeSerif.ttf"),
+    ]
+    for lp in linux_paths:
+        if lp.is_file():
+            try:
+                pdfmetrics.registerFont(TTFont("LinuxDevanagari", str(lp)))
+                return "LinuxDevanagari"
+            except Exception:
+                continue
+
+    # 3. Windows system paths
+    win_paths = [
+        (Path("C:/Windows/Fonts/Nirmala.ttc"), 0),
+        (Path("C:/Windows/Fonts/mangal.ttf"), None),
+    ]
+    for wp, sub_idx in win_paths:
+        if wp.is_file():
+            try:
+                if sub_idx is not None:
+                    pdfmetrics.registerFont(TTFont("NirmalaDevanagari", str(wp), subfontIndex=sub_idx))
+                    return "NirmalaDevanagari"
+                else:
+                    pdfmetrics.registerFont(TTFont("MangalDevanagari", str(wp)))
+                    return "MangalDevanagari"
+            except Exception:
+                continue
+
+    return "Helvetica"
+
+
 def export_to_pdf_report(analysis_result: Any, title: str = "SanskritLens Analysis Report") -> bytes:
     """Generate a clean PDF report using ReportLab.
 
-    If Devanagari TrueType font is available in the operating system, it is embedded;
-    otherwise, fallback font is used with an explanatory note.
+    Devanagari TrueType font is loaded portably from bundled assets or system fonts,
+    providing full native rendering across Linux, Windows, and macOS.
     """
     try:
         from reportlab.lib.pagesizes import letter
@@ -120,15 +178,8 @@ def export_to_pdf_report(analysis_result: Any, title: str = "SanskritLens Analys
         # Fallback to plain text bytes wrapped if ReportLab unavailable
         return export_to_txt_summary(analysis_result, title).encode("utf-8")
 
-    # Attempt to register Devanagari font (Windows Nirmala.ttc or Nirmala.ttf)
-    font_name = "Helvetica"
-    nirmala_path = Path("C:/Windows/Fonts/Nirmala.ttc")
-    if nirmala_path.exists():
-        try:
-            pdfmetrics.registerFont(TTFont("NirmalaDevanagari", str(nirmala_path), subfontIndex=0))
-            font_name = "NirmalaDevanagari"
-        except Exception:
-            font_name = "Helvetica"
+    # Resolve portable Devanagari font
+    font_name = _register_devanagari_pdf_font()
 
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
