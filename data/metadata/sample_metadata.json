@@ -1,0 +1,69 @@
+{
+  "samples": [
+    {
+      "id": "bhagavad_gita_ch2",
+      "filename": "bhagavad_gita_sample.txt",
+      "title": "श्रीमद्भगवद्गीता - द्वितीयोऽध्यायः (साङ्ख्ययोगः)",
+      "english_title": "Bhagavad Gita - Chapter 2: Sankhya Yoga (Verses 11-25)",
+      "source_work": "Mahābhārata (Bhīṣma Parva)",
+      "author_tradition": "Maharshi Vedavyasa (Traditional Attribution)",
+      "chapter_section": "Chapter 2, Verses 11 to 25",
+      "language": "Classical Sanskrit (संस्कृतम्)",
+      "script": "Devanagari (देवनागरी)",
+      "edition_source": "Sanskrit Documents Project / Bhandarkar Oriental Research Institute (BORI) Critical Edition concordance",
+      "license": "Public Domain (Classical Sanskrit text; open digital transcription)",
+      "source_url": "https://sanskritdocuments.org/doc_giitaa/bg02.html",
+      "description": "The foundational philosophical discourse of Lord Krishna to Arjuna on the immortality of the self (Atman), the transient nature of the physical body, and equanimity in action.",
+      "estimated_verses": 15
+    },
+    {
+      "id": "isha_upanishad",
+      "filename": "upanishad_sample.txt",
+      "title": "ईशावास्योपनिषत् (वाजसनेयिसंहितोपनिषत्)",
+      "english_title": "Isha Upanishad (Complete Verses 1-18)",
+      "source_work": "Shukla Yajurveda (Samhita Section, Adhyaya 40)",
+      "author_tradition": "Vedic Risis (Traditional Attribution)",
+      "chapter_section": "Complete Upanishad (Verses 1 to 18)",
+      "language": "Vedic / Classical Sanskrit (संस्कृतम्)",
+      "script": "Devanagari (देवनागरी)",
+      "edition_source": "Göttingen Register of Electronic Texts in Indian Languages (GRETIL) / Sanskrit Documents",
+      "license": "Public Domain (Ancient Vedic text; open digital transcription)",
+      "source_url": "https://sanskritdocuments.org/doc_upanishhat/iisha.html",
+      "description": "One of the principal Mukhya Upanishads, establishing the all-pervasive nature of the divine, the synthesis of Vidya and Avidya, and the nature of selfless enjoyment.",
+      "estimated_verses": 18
+    },
+    {
+      "id": "subhashita_collection",
+      "filename": "subhashita_sample.txt",
+      "title": "सुभाषितरत्नभाण्डागारम् - नीतिविद्यापरकाणि सुभाषितानि",
+      "english_title": "Subhashita Anthology - Verses on Wisdom, Effort, and Character",
+      "source_work": "Subhāṣitaratnabhaṇḍāgāra & Nītiśataka of Bhartṛhari",
+      "author_tradition": "Bhartrhari and Traditional Anthologists",
+      "chapter_section": "Selected Nīti and Vidyā Subhāṣitas",
+      "language": "Classical Sanskrit (संस्कृतम्)",
+      "script": "Devanagari (देवनागरी)",
+      "edition_source": "Nirnaya Sagar Press Edition (1911) / Digital Open Corpus",
+      "license": "Public Domain (Classical didactic anthology; transcription open)",
+      "source_url": "https://sanskritdocuments.org/doc_z_misc_subhashhita/",
+      "description": "Celebrated gnomic verses (subhāṣitas) illustrating traditional values on the nature of true knowledge (Vidyā), diligent effort (Udyama), and righteous conduct (Dharma).",
+      "estimated_verses": 10
+    },
+    {
+      "id": "panchatantra_intro",
+      "filename": "panchatantra_sample.txt",
+      "title": "पञ्चतन्त्रम् - मित्रभेदः (कथामुखम्)",
+      "english_title": "Panchatantra - Book 1: Mitrabheda (Kathāmukha Introduction)",
+      "source_work": "Pañcatantra",
+      "author_tradition": "Pandit Vishnu Sharma (Traditional Attribution)",
+      "chapter_section": "Tantra 1 (Mitrabheda), Opening Narrative",
+      "language": "Classical Sanskrit Narrative Prose and Verse",
+      "script": "Devanagari (देवनागरी)",
+      "edition_source": "Kosegarten / Hertel Panchatantra Editions / GRETIL Archive",
+      "license": "Public Domain (Ancient fable literature)",
+      "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/5_poetry/2_katha/ptant_u.htm",
+      "description": "The celebrated opening narrative of Vishnu Sharma teaching political wisdom and life philosophy to the princes in the city of Mahilaropya through didactic animal tales.",
+      "estimated_verses": 8
+    }
+  ]
+}
+
